@@ -1,0 +1,11 @@
+#!/bin/bash
+echo "this is a script to list all users database resides in  both backup directory and the orginal database in mysql & their size"
+# sleep 5
+usr=$(cut -f1 -d: /etc/domainusers)
+for i in $usr ; do 
+echo " "
+echo "users  in this servers are :$i"
+#sleep 3
+#du -sh /var/lib/mysql/$i_* |grep $i\_ || awk '{print $1 "\t"$4}' 
+du -sh /var/lib/mysql/$i_* |grep $i\_ | cut -f1,5 -d/ |awk '{print $1 "\t"$2}'
+done
